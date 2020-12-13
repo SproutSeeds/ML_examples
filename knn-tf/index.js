@@ -38,4 +38,3 @@ testFeatures.forEach((testPoint, i) =>{
     const err = (testLabels[i][0] - result) / testLabels[i][0];
     console.log('Error', err * 100);
 });
-
