@@ -13,23 +13,25 @@ let { features, labels, testFeatures, testLabels } = loadCSV('./cars.csv' , {
 
 const regression = new LinearRegression(features, labels, {
     learningRate: 0.1,
-    iterations: 25
+    iterations: 3,
+    batchSize: 10
 });
 
 // regression.features.print();
 
 regression.train();
 
-const r2 = regression.test(testFeatures, testLabels);
+// TESTING is only needed in DEVELOPMENT
+// const r2 = regression.test(testFeatures, testLabels);
 
 // console.log('MSE History', regression.mseHistory);
 
 //   PLOT mse History per iteration
-plot({
-    x: regression.mseHistory.reverse(),
-    xLabel: 'Iteration #',
-    yLabel: 'Mean Squared Error'
-});
+// plot({
+//     x: regression.mseHistory.reverse(),
+//     xLabel: 'Iteration #',
+//     yLabel: 'Mean Squared Error'
+// });
 
 // PLOT MSE to B values
 // plot({
@@ -40,3 +42,7 @@ plot({
 // });
 
 console.log('R2 is', r2);
+
+regression.predict([
+    [120, 2, 380]
+]).print();
